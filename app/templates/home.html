@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>QWERTY.com</title>
+</head>
+<body>
+<style>
+   h1 {
+    color: green;
+    font-size: 120%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+   }
+
+</style>
+<h1>topics:</h1>
+{% if topic_list %}
+
+<ul>
+    {% for topic in topic_list %}
+    <li>
+        <div>
+            <a href="/topic?topic_id={{topic.id}}">{{ topic.name }} {{topic.id}} </a>
+        </div>
+
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No topics are available.</p>
+{% endif %}
+
+</body>
+</html>

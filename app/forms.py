@@ -12,3 +12,7 @@ class UserCreateForm(BaseModel):
     password: str
     name: Optional[str] = None
     surname: Optional[str] = None
+
+
+class MessageCreateForm(BaseModel):
+    text: str
