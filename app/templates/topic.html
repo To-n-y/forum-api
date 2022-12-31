@@ -5,6 +5,9 @@
     <title>QWERTY.com</title>
 </head>
 <body>
+<div>
+    <a href="/">К списку тем</a>
+</div>
 <style>
    h1 {
     color: green;
@@ -12,14 +15,10 @@
     font-family: Verdana, Arial, Helvetica, sans-serif;
    }
 
-
-
-
-
 </style>
-<h1>{{curr_topic.name}}</h1>
-<h1>{{curr_topic.id}}</h1>
-<h1>Hello</h1>
+<h1>topic name: {{curr_topic.name}}</h1></br>
+<h1>topic id: {{curr_topic.id}}</h1></br>
+<h1>Message count: {{curr_topic.message_count}}</h1></br>
 {% if message_list %}
 <ul>
     {% for message in message_list %}
@@ -34,7 +33,7 @@
 <p>No messages are available.</p>
 {% endif %}
 
-<form action="post_message_data" method="post">
+<form action="post_message" method="post">
     <p><b>Введите ваш отзыв:</b></p>
     <p><textarea name="message_text"></textarea></p>
     <input type="hidden" name="topic_id" value="{{curr_topic.id}}">

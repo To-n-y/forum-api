@@ -12,15 +12,30 @@
     font-family: Verdana, Arial, Helvetica, sans-serif;
    }
 
+
+
+
+
 </style>
-<h1>topics:</h1>
-{% if topic_list %}
+<a href="/registration">Зарегистрироваться</a>
+<a href="/sign_in">Войти/Выйти</a>
+{% if signed_user_id %}
+<p>Вы авторизованы!</p>
+<a href="/profile?user_id={{signed_user_id}}"> Профиль </a>
+{% else %}
+<p></p>
+{% endif %}
+<h1>Темы(всего тем: {{l}}):</h1>
+
+
+{% if topic_dict %}
 
 <ul>
-    {% for topic in topic_list %}
+    {% for topic in topic_dict %}
     <li>
         <div>
-            <a href="/topic?topic_id={{topic.id}}">{{ topic.name }} {{topic.id}} </a>
+            <a href="/topic?topic_id={{topic.id}}">{{ topic.name }} (by {{topic_dict[topic].name}})</a>
+
         </div>
 
     </li>
@@ -28,6 +43,18 @@
 </ul>
 {% else %}
 <p>No topics are available.</p>
+{% endif %}
+
+{% if signed_user_id %}
+<form action="post_topic" method="post">
+    <p><b>Введите тему:</b></p>
+    <p><textarea name="topic_name"></textarea></p>
+    <p><input type="hidden" name="user_id" value="{{signed_user_id}}">
+    <p><input type="submit"></p>
+</form>
+
+{% else %}
+<p></p>
 {% endif %}
 
 </body>

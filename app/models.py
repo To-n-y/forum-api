@@ -35,11 +35,11 @@ class AuthToken(Base):
 class Topic(Base):
     __tablename__ = 'topics'
     id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
     name = Column(String)
     message_count = Column(Integer, default=0)
     likes = Column(Integer, default=0)
     datetime = Column(String, default=datetime.utcnow())
-
 
 
 class Message(Base):

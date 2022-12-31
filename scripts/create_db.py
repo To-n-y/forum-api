@@ -16,9 +16,8 @@ def main():
         'token VARCHAR, '
         'datetime VARCHAR);')
     session.execute(
-        'CREATE TABLE IF NOT EXISTS topics (id INTEGER PRIMARY KEY, name VARCHAR, message_count INTEGER, '
-        'likes INTEGER, '
-        'datetime VARCHAR);')
+        'CREATE TABLE IF NOT EXISTS topics (id INTEGER PRIMARY KEY, user_id INTEGER REFERENCES users, name VARCHAR, '
+        'message_count INTEGER, likes INTEGER, datetime VARCHAR);')
     session.execute(
         'CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY, topic_id INTEGER REFERENCES topics, '
         'user_id INTEGER REFERENCES users, likes INTEGER, text VARCHAR, answered_message_id INTEGER REFERENCES '
