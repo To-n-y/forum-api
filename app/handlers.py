@@ -1,26 +1,25 @@
-from fastapi import APIRouter, Body, Depends, HTTPException, Form
-from starlette import status
-from starlette.responses import HTMLResponse, FileResponse
-from starlette.templating import Jinja2Templates
+import uuid
+
+from fastapi import APIRouter, Body, Depends, HTTPException, Form, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from starlette import status
+from starlette.responses import HTMLResponse
 
 from auth import check_auth_token
 from forms import UserLoginForm, UserCreateForm
 from models import connect_db, User, AuthToken, Topic, Message
 from utils import get_hash_password
-import uuid
 
 router = APIRouter()
 
-# router.mount('/static', FileResponse('static'), name='static')
 templates = Jinja2Templates(directory='templates')
 
 signed_user_id = None
 
 
 @router.get('/')
-def home(database=Depends(connect_db)):
+async def home(database=Depends(connect_db), response_class=HTMLResponse, request: Request = None):
     global signed_user_id
     topic_list = database.query(Topic).all()
     topic_user_dict = {}
@@ -28,9 +27,10 @@ def home(database=Depends(connect_db)):
         user = database.query(User).filter(User.id == topic.user_id).one()
         topic_user_dict[topic] = user
     ln = len(topic_list)
+    signed_user = database.query(User).filter(User.id == signed_user_id).one_or_none()
     return templates.TemplateResponse('home.html',
-                                      {'request': {'user': None}, 'topic_dict': topic_user_dict, 'l': ln,
-                                       'signed_user_id': signed_user_id})
+                                      {'request': request, 'topic_dict': topic_user_dict, 'l': ln,
+                                       'signed_user': signed_user})
 
 
 @router.post('/post_topic', name='post_create')
@@ -56,10 +56,10 @@ def registration():
                                        })
 
 
-@router.get('/sign_in', name="sign_in")
-def registration():
+@router.get('/sign_in', name="sign_in")  # 1 - войти, 0 - выйти
+def registration(to: int):
     global signed_user_id
-    if signed_user_id is None:
+    if signed_user_id is None or to == 1:
         return templates.TemplateResponse('sign_in.html',
                                           {'request': {'user': None}
                                            })
@@ -122,7 +122,15 @@ def message_create(topic_id=Form(), message_text=Form(), database=Depends(connec
 
 @router.get('/profile', name='profile')
 def profile(user_id: int, database=Depends(connect_db)):
-    curr_user = database.query(User).filter(User.id == user_id).one_or_none()
+    global signed_user_id  # curr_user_id - id of user who is signed in
+    curr_user = database.query(User).filter(
+        User.id == user_id).one_or_none()  # user_id - id of user whose profile is opened
+    signed_user = database.query(User).filter(User.id == signed_user_id).one_or_none()
+    if signed_user_id is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='Authorization required'
+        )
     if curr_user is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -130,7 +138,7 @@ def profile(user_id: int, database=Depends(connect_db)):
         )
     else:
         return templates.TemplateResponse('profile.html',
-                                          {'request': {'user': None}, 'user': curr_user})
+                                          {'request': {'user': None}, 'user': curr_user, 'signed_user': signed_user})
 
 
 @router.get('/topic', name='topic')

@@ -6,6 +6,11 @@
 </head>
 <body>
 <h1> Hello, {{user.name}} !</h1>
+{% if signed_user.id==user.id %}
+<p>Это вы!{{signed_user.id}}</p>
+{% else %}
+<p></p>
+{% endif %}
 <a href="/"> Назад </a>
 </body>
 </html>
