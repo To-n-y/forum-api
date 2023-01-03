@@ -3,5 +3,7 @@ color: red;
 }
 h1 {
     color: green;
+        font-size: 120%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
    }
 /* Path: app\static\css\style.css */

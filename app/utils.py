@@ -1,5 +1,5 @@
 import hashlib
-from config import SECRET_KEY
+from app.config import SECRET_KEY
 
 
 def get_hash_password(password: str) -> str:

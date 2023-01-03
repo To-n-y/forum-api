@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import Session, relationship
-from config import DATABASE_URL
+from app.config import DATABASE_URL
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 

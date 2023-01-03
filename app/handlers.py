@@ -6,14 +6,14 @@ from fastapi.templating import Jinja2Templates
 from starlette import status
 from starlette.responses import HTMLResponse
 
-from auth import check_auth_token
-from forms import UserLoginForm, UserCreateForm
-from models import connect_db, User, AuthToken, Topic, Message
-from utils import get_hash_password
+from app.auth import check_auth_token
+from app.forms import UserLoginForm, UserCreateForm
+from app.models import connect_db, User, AuthToken, Topic, Message
+from app.utils import get_hash_password
 
 router = APIRouter()
 
-templates = Jinja2Templates(directory='templates')
+templates = Jinja2Templates(directory='app/templates')
 
 signed_user_id = None
 
