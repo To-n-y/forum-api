@@ -8,7 +8,7 @@ __pycache__/
 
 .env
 fastapi_app.db
-
+db.sqlite
 
 # Distribution / packaging
 .Python
