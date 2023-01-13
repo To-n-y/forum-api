@@ -4,15 +4,26 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>QWERTY.com</title>
     {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style2.css') }}">
     {% endblock %}
 </head>
 <body>
-<style>
-</style>
-<img src="{{ url_for('static', path='img/turtle.jpg') }}" alt="logo" width="300" height="200">
-<a href="/registration">Зарегистрироваться</a>
-<a href="/sign_in?to=1">Войти</a>
+<header>
+    <div >
+        <h1><span class="highlight">QWERTY Company</span></h1>
+    </div>
+    <a href="/registration" class="floating-button" id="auth">Sign in</a>
+    <a href="/sign_in?to=1" class="floating-button" id="auth_1">Login</a>
+
+</header>
+<section>
+    <div>
+        <h1>Добро пожаловать на сайт QWERTY Company</h1>
+        <p>Здесь вы можете найти много интересного!</p>
+
+    </div>
+
+
 {% if signed_user %}
 <p>Привет, {{signed_user.name}}!</p>
 <a href="/sign_in?to=0">Выйти</a>
@@ -20,23 +31,24 @@
 {% else %}
 <p></p>
 {% endif %}
-<h1>Темы(всего тем: {{l}}):</h1>
 
-
-{% if topic_dict %}
-
-<ul>
-    {% for topic in topic_dict %}
-    <li>
-        <div>
-            <p><a href="/topic?topic_id={{topic.id}}">{{ topic.name }}</a> <a
-                    href="/profile?user_id={{topic.user_id}}"> (by
-                {{topic_dict[topic].name}})</a></p>
-        </div>
-
-    </li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <section class="toc-wrapper">
+        <h1>Темы(всего тем: {{l}}):</h1>
+             {% if topic_dict %}
+        <ol class="toc">
+        {% for topic in topic_dict %}
+            <li>
+                <div>
+                    <p><a href="/topic?topic_id={{topic.id}}">{{ topic.name }}</a> <a
+                     href="/profile?user_id={{topic.user_id}}"> (by
+                    {{topic_dict[topic].name}})</a></p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+</div>
 {% else %}
 <p>No topics are available.</p>
 {% endif %}
