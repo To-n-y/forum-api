@@ -22,6 +22,7 @@ cd..
 cd..
 python -m pip install --upgrade pip
 git clone https://github.com/To-n-y/forum-api.git
+cd forum-api
 pip install -r requirements.txt
 ```
 
