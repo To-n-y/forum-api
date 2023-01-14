@@ -7,7 +7,8 @@ html, body {
 }
 
 body {
-    background: url(https://html5book.ru/wp-content/uploads/2015/07/background39.png?__cf_chl_tk=3GeTyIaSerLWfKuu3FWb0m6aYCrI8B0uzwxmbl0HidU-1673366017-0-gaNycGzNCRE);
+    background-image: url("../img/background39.png");
+  /* background: url(https://html5book.ru/wp-content/uploads/2015/07/background39.png?__cf_chl_tk=3GeTyIaSerLWfKuu3FWb0m6aYCrI8B0uzwxmbl0HidU-1673366017-0-gaNycGzNCRE);*/
 }
 
 header {
