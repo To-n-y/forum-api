@@ -21,6 +21,7 @@ To install the application use following commands:
 cd..
 cd..
 python -m pip install --upgrade pip
+git clone https://github.com/To-n-y/forum-api.git
 pip install -r requirements.txt
 ```
 
