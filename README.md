@@ -4,6 +4,8 @@
 
 This project uses: **Python**, **FastAPI** and **SQLAlchemy**
 
+# How to run
+
 ## Installing application
 First you should create env folder using commands:
 
@@ -29,6 +31,10 @@ pip install -r requirements.txt
 ## Environment configuration
 
 **.env** file is already added
+
+## Create database
+
+This api uses sqlite database, so you should create **fastapi_app.db** file in the root directory
 
 ## Running the application in dev mode
 
