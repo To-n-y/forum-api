@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap');
 
+
 html, body {
   height: 100%;
-  padding: 0;
   margin: 0;
+
 }
 
 body {
@@ -20,7 +21,7 @@ header {
     height: 100px;
     border: 1px solid black;
     align-items: center;
-    }
+}
 
 .floating-button {
   text-decoration: none;
@@ -51,7 +52,7 @@ header {
 #auth_1 {
     position: absolute;
     right: 0;
-    }
+}
 
 #auth {
     position: absolute;
@@ -59,15 +60,112 @@ header {
 }
 
 .highlight {
-    color: #310062;
-    font-family: 'Raleway', sans-serif;
-    font-weight: bold;
-    position: absolute;
-    font-size: 150%;
-    left: 500px;
-        }
+  color: #310062;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  position: absolute;
+  font-size: 150%;
+  left: 550px;
+}
+       
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.hello{
+  padding-left: 20px;
+}
+ a {
+  text-decoration: none;
+  color: #231E20;
+}
+       
+.container {
+  padding: 0 20px;
+}
+       
+.theme {
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+       
+.toc-wrapper {
+  display: table;
+  margin: 0 auto;
+}
+       
+.toc {
+  list-style: none;
+  counter-reset: li;
+}
+       
+.toc li {
+  position: relative;
+  margin-bottom: 20px;
+  padding-left: 50px;
+  line-height: 28px;
+  transition: .3s linear;
+}
+       
+.toc li:last-child {
+  margin-bottom: 0;
+}
+      
+.toc li:before {
+  counter-increment: li;
+  content: counters(li, "");
+  position: absolute;
+  top: 50%;
+  margin-top: -14px;
+  left: 0;
+  font-size: 14px;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  line-height: 28px;
+  color: white;
+  border-radius: 50%;
+  background: rgb(49, 0, 98);
+}
+       
+.toc li:nth-child(2):before,
+.toc li:nth-child(2):after {
+  background: rgba(49, 0, 98, .8);
+}
+       
+.toc li:nth-child(3):before,
+.toc li:nth-child(3):after {
+  background: rgba(49, 0, 98, .6);
+}
+       
+.toc li:nth-child(4):before,
+.toc li:nth-child(4):after {
+  background: rgba(49, 0, 98, .4);
+}
+       
+.toc li:nth-child(5):before,
+.toc li:nth-child(5):after {
+  background: rgba(49, 0, 98, .2);
+}
+      
+.toc li:after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgb(49, 0, 98);
+  top: 50%;
+  left: 34px;
+  margin-top: -4px;
+  opacity: 0;
+  transition: .3s linear;
+}
+       
+.toc li:hover:after {
+  opacity: 1;
+}
 
 
-
-
+ 
 /* Path: app\static\css\style.css */

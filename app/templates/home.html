@@ -17,10 +17,9 @@
 
 </header>
 <section>
-    <div>
+    <div class="hello">
         <h1>Добро пожаловать на сайт QWERTY Company</h1>
         <p>Здесь вы можете найти много интересного!</p>
-
     </div>
 
 
@@ -32,17 +31,27 @@
 <p></p>
 {% endif %}
 
+{% if signed_user %}
+<form action="post_topic" method="post">
+    <p><b>Введите тему:</b></p>
+    <p><textarea name="topic_name"></textarea></p>
+    <p><input type="hidden" name="user_id" value="{{signed_user.id}}">
+    <p><input type="submit"></p>
+</form>
+{% else %}
+<p></p>
+{% endif %}
+
 <div class="container">
     <section class="toc-wrapper">
-        <h1>Темы(всего тем: {{l}}):</h1>
+        <h1 class="theme">Темы (всего: {{l}}):</h1>
              {% if topic_dict %}
-        <ol class="toc">
+        <ul class="toc">
         {% for topic in topic_dict %}
             <li>
                 <div>
                     <p><a href="/topic?topic_id={{topic.id}}">{{ topic.name }}</a> <a
-                     href="/profile?user_id={{topic.user_id}}"> (by
-                    {{topic_dict[topic].name}})</a></p>
+                     href="/profile?user_id={{topic.user_id}}">({{topic.message_count}} replies)</a></p>
                 </div>
             </li>
             {% endfor %}
@@ -51,18 +60,6 @@
 </div>
 {% else %}
 <p>No topics are available.</p>
-{% endif %}
-
-{% if signed_user %}
-<form action="post_topic" method="post">
-    <p><b>Введите тему:</b></p>
-    <p><textarea name="topic_name"></textarea></p>
-    <p><input type="hidden" name="user_id" value="{{signed_user.id}}">
-    <p><input type="submit"></p>
-</form>
-
-{% else %}
-<p></p>
 {% endif %}
 
 </body>

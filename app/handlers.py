@@ -97,6 +97,8 @@ def user_create_post(user_email=Form(), user_password1=Form(), user_password2=Fo
         new_user = User(name=user_name, email=user_email, password=user_password1, surname=user_surname)
         database.add(new_user)
         database.commit()
+        global signed_user_id
+        signed_user_id = new_user.id
         return templates.TemplateResponse('back_home.html',
                                           {'request': {'user': None}
                                            })
