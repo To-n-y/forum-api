@@ -38,7 +38,7 @@ This api uses sqlite database, so you should create **fastapi_app.db** file in t
 
 ## Running the application in dev mode
 
-You can run your application in dev mode that enables live coding using:
+You can run this application in dev mode:
 ```shell script
 uvicorn app.main:app
 ```
