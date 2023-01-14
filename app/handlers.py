@@ -1,7 +1,7 @@
 import uuid
 
 from fastapi import APIRouter, Body, Depends, HTTPException, Form, Request
-from fastapi.staticfiles import StaticFiles
+# from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette import status
 from starlette.responses import HTMLResponse
@@ -50,14 +50,14 @@ def post_create(topic_name=Form(), user_id=Form(), database=Depends(connect_db))
 
 
 @router.get('/registration', name="registration")
-def registration():
+def registration_1():
     return templates.TemplateResponse('registration.html',
                                       {'request': {'user': None}
                                        })
 
 
 @router.get('/sign_in', name="sign_in")  # 1 - войти, 0 - выйти
-def registration(to: int):
+def registration_2(to: int):
     global signed_user_id
     if signed_user_id is None or to == 1:
         return templates.TemplateResponse('sign_in.html',
@@ -71,7 +71,7 @@ def registration(to: int):
 
 
 @router.post('/sign_in', name="sign_in")
-def user_create(user_password=Form(), user_name=Form(), database=Depends(connect_db)):
+def user_create_sign(user_password=Form(), user_name=Form(), database=Depends(connect_db)):
     curr_user = database.query(User).filter(User.name == user_name).one_or_none()
     if curr_user is None:
         raise HTTPException(
@@ -90,8 +90,9 @@ def user_create(user_password=Form(), user_name=Form(), database=Depends(connect
 
 
 @router.post('/post_user', name="user_create")
-def user_create(user_email=Form(), user_password1=Form(), user_password2=Form(), user_name=Form(), user_surname=Form(),
-                database=Depends(connect_db)):
+def user_create_post(user_email=Form(), user_password1=Form(), user_password2=Form(), user_name=Form(),
+                     user_surname=Form(),
+                     database=Depends(connect_db)):
     if user_password2 == user_password1:
         new_user = User(name=user_name, email=user_email, password=user_password1, surname=user_surname)
         database.add(new_user)
