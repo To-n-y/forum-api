@@ -1,5 +1,7 @@
 # Forum API
 
+[![Code checks](https://github.com/To-n-y/forum-api/actions/workflows/checks.yml/badge.svg)](https://github.com/To-n-y/forum-api/actions/workflows/checks.yml)
+
 This project uses: **Python**, **FastAPI** and **SQLAlchemy**
 
 ## Installing application
