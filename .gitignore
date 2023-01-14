@@ -8,6 +8,7 @@ __pycache__/
 
 
 fastapi_app.db
+*.db
 db.sqlite
 
 # Distribution / packaging
