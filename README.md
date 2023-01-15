@@ -46,7 +46,7 @@ You can run this application in dev mode:
 uvicorn app.main:app
 ```
 ## Using Docker to run an App
-First your should mount the database, go to Docker and then Settings -> Resources -> FileSharing. Add project folder and click Apply & Restart
+Go to Docker and then Settings -> Resources -> FileSharing. Add project folder and click Apply & Restart
 To run an app using Docker, you need to run Docker containers by typing simple command:
 ```
 docker-compose up
