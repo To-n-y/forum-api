@@ -34,7 +34,10 @@ pip install -r requirements.txt
 
 ## Create database
 
-This api uses sqlite database, so you should create **fastapi_app.db** file in the root directory
+This api uses sqlite database, so create **db** folder in the root directory
+```shell script
+mkdir db
+```
 
 ## Running the application in dev mode
 
