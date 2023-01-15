@@ -9,4 +9,4 @@ services:
     env_file:
       - .env
     volumes:
-      - ./fastapi_app.db:/app/fastapi_app.db:delegated
+      - ./db:/db
