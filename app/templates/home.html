@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>QWERTY.com</title>
     {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style1.css') }}">
     {% endblock %}
 </head>
 <body>
@@ -12,39 +12,40 @@
     <div >
         <h1><span class="highlight">QWERTY Company</span></h1>
     </div>
+
+    {% if signed_user %}
+    <a href="/sign_in?to=0" class="floating-button" id="auth">Log out</a>
+    <a href="/profile?user_id={{signed_user.id}}" class="floating-button" id="auth_1"> Profile </a>
+    {% else %}
     <a href="/registration" class="floating-button" id="auth">Sign in</a>
     <a href="/sign_in?to=1" class="floating-button" id="auth_1">Login</a>
+    {% endif %}
 
 </header>
 <section>
     <div class="hello">
-        <h1>Добро пожаловать на сайт QWERTY Company</h1>
-        <p>Здесь вы можете найти много интересного!</p>
+        <h1>Welcome to QWERTY Company</h1>
+        <p>Here you can find lots of intresting!</p>
     </div>
 
 
 {% if signed_user %}
-<p>Привет, {{signed_user.name}}!</p>
-<a href="/sign_in?to=0">Выйти</a>
-<a href="/profile?user_id={{signed_user.id}}"> Профиль </a>
+<p>signed_user</p>
+<div class="signed_user">
+    <form action="post_topic" method="post">
+        <p><b>Type name of your topic:</b></p>
+        <p><textarea name="topic_name" placeholder="Type here"></textarea></p>
+        <p><input type="hidden" name="user_id" value="{{signed_user.id}}">
+        <p><input type="submit"></p>
+    </form>
 {% else %}
-<p></p>
+    <p></p>
 {% endif %}
-
-{% if signed_user %}
-<form action="post_topic" method="post">
-    <p><b>Введите тему:</b></p>
-    <p><textarea name="topic_name"></textarea></p>
-    <p><input type="hidden" name="user_id" value="{{signed_user.id}}">
-    <p><input type="submit"></p>
-</form>
-{% else %}
-<p></p>
-{% endif %}
+</div>
 
 <div class="container">
     <section class="toc-wrapper">
-        <h1 class="theme">Темы (всего: {{l}}):</h1>
+        <h1 class="theme">Topics (total: {{l}}):</h1>
              {% if topic_dict %}
         <ul class="toc">
         {% for topic in topic_dict %}

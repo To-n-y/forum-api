@@ -43,7 +43,7 @@ mkdir db
 
 You can run this application in dev mode:
 ```shell script
-uvicorn app.main:app
+uvicorn app.main:app --reload
 ```
 
 ## Run tests

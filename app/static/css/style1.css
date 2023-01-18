@@ -75,6 +75,49 @@ body {
 .hello{
   padding-left: 20px;
 }
+
+.signed_user{
+  padding: 0 20px;
+  float: left;
+}
+
+.btn {
+  /* сброс стилей */
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  
+  /* сброс браузерных стилей для фокуса */
+  outline: none;
+  
+  /* переопределение стилей для ссылок */
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+
+  /* небольшие вертикальные отступы */
+  margin: 2px 0;
+
+  /* невидимая рамка */
+  border: solid 1px transparent;
+  border-radius: 4px;
+
+  /* для установки размеров используем паддинги */
+  padding: 0.5em 1em;
+
+  /* контрастные цвета */
+  color: #ffffff;
+  background-color: #9555af;
+}
+
+.btn:active {
+  transform: translateY(1px);
+  filter: saturate(150%);
+}
+
  a {
   text-decoration: none;
   color: #231E20;
@@ -82,6 +125,9 @@ body {
        
 .container {
   padding: 0 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 33%;
 }
        
 .theme {
