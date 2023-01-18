@@ -45,6 +45,14 @@ You can run this application in dev mode:
 ```shell script
 uvicorn app.main:app
 ```
+
+## Run tests
+
+You can run tests using:
+```shell script
+pytest -s -v
+```
+
 ## Using Docker to run an App
 Go to Docker and then Settings -> Resources -> FileSharing. Add project folder and click Apply & Restart
 To run an app using Docker, you need to run Docker containers by typing simple command:
