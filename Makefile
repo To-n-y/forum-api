@@ -1,5 +1,10 @@
+test:
+	pytest -s -v
+
+.PHONY: test
+
 run:
-	uvicorn main:app --reload
+	uvicorn app.main:app --reload
 
 install:
 	python -m pip install --upgrade pip
