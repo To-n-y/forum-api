@@ -45,12 +45,20 @@ You can run this application in dev mode:
 ```shell script
 uvicorn app.main:app --reload
 ```
+Or
+```shell script
+make run
+``` 
 
 ## Run tests
 
 You can run tests using:
 ```shell script
 pytest -s -v
+```
+Or 
+```shell script
+make test
 ```
 
 ## Using Docker to run an App
