@@ -1,8 +1,8 @@
-from fastapi import FastAPI
-from starlette.staticfiles import StaticFiles
-
 from app.handlers import router
+from fastapi import FastAPI, WebSocket
 from scripts.create_db import main as create_db
+from starlette.staticfiles import StaticFiles
+from starlette.websockets import WebSocketDisconnect
 
 
 def create_app():
@@ -13,6 +13,9 @@ def create_app():
 
 
 app = create_app()
+
+chat_rooms = {}
+
 
 @app.websocket("/ws")
 async def websocket(websocket: WebSocket):
@@ -36,6 +39,7 @@ async def websocket_endpoint(websocket: WebSocket, chat_name: str):
                     await ws.send_text(data)
     except WebSocketDisconnect:
         chat_rooms[chat_name].remove(websocket)
-        
+
+
 app.include_router(router)
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
