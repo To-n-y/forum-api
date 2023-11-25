@@ -28,3 +28,6 @@ jobs:
         run: |
           flake8 app
           black --check app
+      - name: Run tests
+        run: |
+          make test
